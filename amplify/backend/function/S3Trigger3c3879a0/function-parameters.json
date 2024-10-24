@@ -1,0 +1,10 @@
+{
+  "policy": {
+    "Effect": "Allow",
+    "Action": [
+      "textract:AnalyzeDocument",
+      "textract:DetectDocumentText"
+    ],
+    "Resource": "*"
+  }
+}

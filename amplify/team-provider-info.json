@@ -1,0 +1,40 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-stegosaurus-dev-a8502-authRole",
+      "UnauthRoleArn": "arn:aws:iam::851725347775:role/amplify-stegosaurus-dev-a8502-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::851725347775:role/amplify-stegosaurus-dev-a8502-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-stegosaurus-dev-a8502-deployment",
+      "UnauthRoleName": "amplify-stegosaurus-dev-a8502-unauthRole",
+      "StackName": "amplify-stegosaurus-dev-a8502",
+      "StackId": "arn:aws:cloudformation:us-east-1:851725347775:stack/amplify-stegosaurus-dev-a8502/b66ee9f0-70ad-11ef-be19-0ec16b2567c5",
+      "AmplifyAppId": "dgefvzwxdq0ul"
+    },
+    "categories": {
+      "auth": {
+        "stegosaurus54418580": {}
+      },
+      "function": {
+        "S3Trigger3c3879a0": {
+          "deploymentBucketName": "amplify-stegosaurus-dev-a8502-deployment",
+          "s3Key": "amplify-builds/S3Trigger3c3879a0-716c7976584a6b5a425a-build.zip"
+        },
+        "stegosaurusJobsTriggerb75d381c": {
+          "deploymentBucketName": "amplify-stegosaurus-dev-a8502-deployment",
+          "s3Key": "amplify-builds/stegosaurusJobsTriggerb75d381c-61515055646753787257-build.zip"
+        }
+      },
+      "storage": {
+        "stegosaurusStorage": {},
+        "stegosaurusJobs": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dgefvzwxdq0ul",
+          "type": "manual"
+        }
+      }
+    }
+  }
+}

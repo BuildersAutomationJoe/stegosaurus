@@ -1,0 +1,14 @@
+{
+  "resourceName": "stegosaurusStorage",
+  "policyUUID": "c04f4049",
+  "bucketName": "stegosaurus7ab1a19c48794c4998e106d06506a43b",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Trigger3c3879a0",
+  "groupAccess": {}
+}
