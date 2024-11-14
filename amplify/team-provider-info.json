@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-stegosaurus-staging-269b6-authRole",
+      "UnauthRoleArn": "arn:aws:iam::851725347775:role/amplify-stegosaurus-staging-269b6-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::851725347775:role/amplify-stegosaurus-staging-269b6-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-stegosaurus-staging-269b6-deployment",
+      "UnauthRoleName": "amplify-stegosaurus-staging-269b6-unauthRole",
+      "StackName": "amplify-stegosaurus-staging-269b6",
+      "StackId": "arn:aws:cloudformation:us-east-2:851725347775:stack/amplify-stegosaurus-staging-269b6/6a142f30-a2b6-11ef-9715-067c9149f2df",
+      "AmplifyAppId": "do2ghtt7chgos"
+    },
+    "categories": {
+      "auth": {
+        "stegosaurus": {}
+      }
+    }
+  }
+}
