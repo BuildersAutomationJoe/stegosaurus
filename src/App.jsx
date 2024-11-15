@@ -16,6 +16,7 @@ import { createTextInputs } from './graphql/mutations';
 import {
   TextInputs 
 } from './ui-components';
+import { API } from 'aws-amplify';
 
 const client = generateClient();
 /**
@@ -97,20 +98,21 @@ export default function App() {
         ))}
       </Grid>
       <Button onClick={signOut}>Sign Out</Button>
-      <TextInputs
-        onSubmit={(fields) => {
-          // Example function to trim all string inputs
-          const updatedFields = {};
-          Object.keys(fields).forEach((key) => {
-            if (typeof fields[key] === 'string') {
-              updatedFields[key] = fields[key].trim();
-            } else {
-              updatedFields[key] = fields[key];
-            }
-          });
-          return updatedFields;
-        }}
-      />
+		<TextInputs
+		  onSubmit={async (fields) => {
+			const inputText = fields.text.trim(); // Extract and trim text input
+
+			try {
+			  const response = await API.post('openaiApiRequest', '/openai', {
+				body: { inputText }, // Pass the text input
+			  });
+
+			  console.log('Response from OpenAI:', response.result); // Handle the API response
+			} catch (error) {
+			  console.error('Error calling OpenAI Lambda:', error);
+			}
+		  }}
+		/>;
     </Flex>
   );
 }

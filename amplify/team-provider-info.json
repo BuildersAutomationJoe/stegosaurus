@@ -14,6 +14,16 @@
     "categories": {
       "auth": {
         "stegosaurus": {}
+      },
+      "function": {
+        "openaiApiRequest": {
+          "openaiApiKey": "sk-svcacct-muC6SoGfVnFJIvQZeXYj1HYHQaDFdLMJ5kRL9IinKUtr9hIcXo1j3OOjrwef4CfDjd5ib_IT3BlbkFJwdLvyb8Ms-PIkB0FnTuYic8lgfoq1nVqoXhM35aLrlurKHXTTi9GxcNoTl9NGlTLc176SuwA",
+          "deploymentBucketName": "amplify-stegosaurus-staging-269b6-deployment",
+          "s3Key": "amplify-builds/openaiApiRequest-34304e2f423744386449-build.zip"
+        }
+      },
+      "api": {
+        "stegosaurus": {}
       }
     }
   }

@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "api": {
+      "stegosaurus": [
+        "Query",
+        "Mutation"
+      ]
+    },
+    "auth": {
+      "stegosaurus": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "storage": {
+      "TextInputs:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ],
+      "DataObject:@model(appsync)": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "openaiApiKey",
+      "environmentVariableName": "OPENAI_API_KEY"
+    }
+  ]
+}
