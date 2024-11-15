@@ -12,18 +12,11 @@ import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import outputs from "../amplify_outputs.json";
 import { generateClient } from "aws-amplify/api";
-import { createTextInputs } from './graphql/mutations';
-import {
-  TextInputs 
-} from './ui-components';
-import { API } from 'aws-amplify';
-
-const client = generateClient();
-/**
- * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
- */
+import { TextInputs } from './ui-components';
 
 Amplify.configure(outputs);
+
+const client = generateClient();
 
 export default function App() {
   const [userprofiles, setUserProfiles] = useState([]);
@@ -31,7 +24,6 @@ export default function App() {
 
   useEffect(() => {
     fetchUserProfile();
-    submitNewTextInputs(); // Ensure async function for mutation is called within useEffect
   }, []);
 
   async function fetchUserProfile() {
@@ -43,19 +35,15 @@ export default function App() {
     }
   }
 
-  async function submitNewTextInputs() {
+  async function submitNewTextInputs(inputText) {
     try {
-      const newTextInputs = await client.graphql({
-        query: createTextInputs,
-        variables: {
-          input: {
-            text: "Lorem ipsum dolor sit amet",
-          },
-        },
+      const response = await client.functions.invoke({
+        name: "openaiApiRequest", // Replace with your Lambda function's name
+        payload: { inputText }, // Pass the input text to the Lambda function
       });
-      console.log("New Text Inputs created:", newTextInputs);
+      console.log("Lambda Response:", response);
     } catch (error) {
-      console.error("Error creating text inputs:", error);
+      console.error("Error calling Lambda function:", error);
     }
   }
 
@@ -98,21 +86,12 @@ export default function App() {
         ))}
       </Grid>
       <Button onClick={signOut}>Sign Out</Button>
-		<TextInputs
-		  onSubmit={async (fields) => {
-			const inputText = fields.text.trim(); // Extract and trim text input
-
-			try {
-			  const response = await API.post('openaiApiRequest', '/openai', {
-				body: { inputText }, // Pass the text input
-			  });
-
-			  console.log('Response from OpenAI:', response.result); // Handle the API response
-			} catch (error) {
-			  console.error('Error calling OpenAI Lambda:', error);
-			}
-		  }}
-		/>;
+      <TextInputs
+        onSubmit={(fields) => {
+          const inputText = fields.text.trim();
+          submitNewTextInputs(inputText);
+        }}
+      />
     </Flex>
   );
 }
