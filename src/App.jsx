@@ -13,6 +13,9 @@ import "@aws-amplify/ui-react/styles.css";
 import outputs from "../amplify_outputs.json";
 import { generateClient } from "aws-amplify/api";
 import { createTextInputs } from './graphql/mutations';
+import {
+ TextInputs 
+} from './ui-components';
 
 const client = generateClient()
 /**
@@ -82,6 +85,20 @@ export default function App() {
         ))}
       </Grid>
       <Button onClick={signOut}>Sign Out</Button>
+	  <TextInputs
+			onSubmit={(fields) => {
+			// Example function to trim all string inputs
+			const updatedFields = {}
+			Object.keys(fields).forEach(key => {
+				if (typeof fields[key] === 'string') {
+					updatedFields[key] = fields[key].trim()
+				} else {
+					updatedFields[key] = fields[key]
+				}
+			})
+			return updatedFields
+			}}
+		/>
     </Flex>
   );
 }

@@ -115,7 +115,7 @@ export default function TextInputs(props) {
       {...rest}
     >
       <TextField
-        label="Text"
+        label="Enter your transaction description!"
         isRequired={false}
         isReadOnly={false}
         value={text}
