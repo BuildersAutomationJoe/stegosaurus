@@ -16,9 +16,6 @@
     "s3Key": {
       "Type": "String"
     },
-    "openaiApiKey": {
-      "Type": "String"
-    },
     "apistegosaurusGraphQLAPIIdOutput": {
       "Type": "String",
       "Default": "apistegosaurusGraphQLAPIIdOutput"
@@ -34,6 +31,9 @@
     "authstegosaurusUserPoolId": {
       "Type": "String",
       "Default": "authstegosaurusUserPoolId"
+    },
+    "secretsPathAmplifyAppId": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -154,7 +154,26 @@
               ]
             },
             "OPENAI_API_KEY": {
-              "Ref": "openaiApiKey"
+              "Fn::Join": [
+                "",
+                [
+                  {
+                    "Fn::Sub": [
+                      "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
+                      {
+                        "appId": {
+                          "Ref": "secretsPathAmplifyAppId"
+                        },
+                        "env": {
+                          "Ref": "env"
+                        },
+                        "functionName": "openaiApiRequest"
+                      }
+                    ]
+                  },
+                  "OPENAI_API_KEY"
+                ]
+              ]
             }
           }
         },
@@ -566,6 +585,63 @@
         "Action": "lambda:InvokeFunction",
         "Principal": "appsync.amazonaws.com"
       }
+    },
+    "AmplifyFunctionSecretsPolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "amplify-function-secrets-policy",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "ssm:GetParameter",
+                "ssm:GetParameters"
+              ],
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:ssm:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":parameter",
+                    {
+                      "Fn::Sub": [
+                        "/amplify/${appId}/${env}/AMPLIFY_${functionName}_",
+                        {
+                          "appId": {
+                            "Ref": "secretsPathAmplifyAppId"
+                          },
+                          "env": {
+                            "Ref": "env"
+                          },
+                          "functionName": "openaiApiRequest"
+                        }
+                      ]
+                    },
+                    "*"
+                  ]
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ]
     }
   },
   "Outputs": {
