@@ -14,10 +14,10 @@ import outputs from "../amplify_outputs.json";
 import { generateClient } from "aws-amplify/api";
 import { createTextInputs } from './graphql/mutations';
 import {
- TextInputs 
+  TextInputs 
 } from './ui-components';
 
-const client = generateClient()
+const client = generateClient();
 /**
  * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
  */
@@ -27,21 +27,35 @@ Amplify.configure(outputs);
 export default function App() {
   const [userprofiles, setUserProfiles] = useState([]);
   const { signOut } = useAuthenticator((context) => [context.user]);
-	const newTextInputs = await client.graphql({
-    query: createTextInputs,
-    variables: {
-        input: {
-		"text": "Lorem ipsum dolor sit amet"
-	}
-    }
-});
+
   useEffect(() => {
     fetchUserProfile();
+    submitNewTextInputs(); // Ensure async function for mutation is called within useEffect
   }, []);
 
   async function fetchUserProfile() {
-    const { data: profiles } = await client.models.UserProfile.list();
-    setUserProfiles(profiles);
+    try {
+      const { data: profiles } = await client.models.UserProfile.list();
+      setUserProfiles(profiles);
+    } catch (error) {
+      console.error("Error fetching user profiles:", error);
+    }
+  }
+
+  async function submitNewTextInputs() {
+    try {
+      const newTextInputs = await client.graphql({
+        query: createTextInputs,
+        variables: {
+          input: {
+            text: "Lorem ipsum dolor sit amet",
+          },
+        },
+      });
+      console.log("New Text Inputs created:", newTextInputs);
+    } catch (error) {
+      console.error("Error creating text inputs:", error);
+    }
   }
 
   return (
@@ -83,20 +97,20 @@ export default function App() {
         ))}
       </Grid>
       <Button onClick={signOut}>Sign Out</Button>
-	  <TextInputs
-			onSubmit={(fields) => {
-			// Example function to trim all string inputs
-			const updatedFields = {}
-			Object.keys(fields).forEach(key => {
-				if (typeof fields[key] === 'string') {
-					updatedFields[key] = fields[key].trim()
-				} else {
-					updatedFields[key] = fields[key]
-				}
-			})
-			return updatedFields
-			}}
-		/>
+      <TextInputs
+        onSubmit={(fields) => {
+          // Example function to trim all string inputs
+          const updatedFields = {};
+          Object.keys(fields).forEach((key) => {
+            if (typeof fields[key] === 'string') {
+              updatedFields[key] = fields[key].trim();
+            } else {
+              updatedFields[key] = fields[key];
+            }
+          });
+          return updatedFields;
+        }}
+      />
     </Flex>
   );
 }
