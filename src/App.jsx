@@ -27,15 +27,6 @@ Amplify.configure(outputs);
 export default function App() {
   const [userprofiles, setUserProfiles] = useState([]);
   const { signOut } = useAuthenticator((context) => [context.user]);
-
-  useEffect(() => {
-    fetchUserProfile();
-  }, []);
-
-  async function fetchUserProfile() {
-    const { data: profiles } = await client.models.UserProfile.list();
-    setUserProfiles(profiles);
-	
 	const newTextInputs = await client.graphql({
     query: createTextInputs,
     variables: {
@@ -44,6 +35,13 @@ export default function App() {
 	}
     }
 });
+  useEffect(() => {
+    fetchUserProfile();
+  }, []);
+
+  async function fetchUserProfile() {
+    const { data: profiles } = await client.models.UserProfile.list();
+    setUserProfiles(profiles);
   }
 
   return (
