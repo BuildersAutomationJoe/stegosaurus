@@ -12,6 +12,10 @@ import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import { generateClient } from "aws-amplify/data";
 import outputs from "../amplify_outputs.json";
+import { generateClient } from "aws-amplify/api";
+import { createTextInputs } from './graphql/mutations';
+
+const client = generateClient()
 /**
  * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
  */
@@ -32,6 +36,15 @@ export default function App() {
   async function fetchUserProfile() {
     const { data: profiles } = await client.models.UserProfile.list();
     setUserProfiles(profiles);
+	
+	const newTextInputs = await client.graphql({
+    query: createTextInputs,
+    variables: {
+        input: {
+		"text": "Lorem ipsum dolor sit amet"
+	}
+    }
+});
   }
 
   return (
