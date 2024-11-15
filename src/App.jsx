@@ -21,9 +21,6 @@ const client = generateClient()
  */
 
 Amplify.configure(outputs);
-const client = generateClient({
-  authMode: "userPool",
-});
 
 export default function App() {
   const [userprofiles, setUserProfiles] = useState([]);
