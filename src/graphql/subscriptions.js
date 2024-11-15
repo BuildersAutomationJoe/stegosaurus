@@ -1,6 +1,45 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const onCreateTextInputs = /* GraphQL */ `
+  subscription OnCreateTextInputs(
+    $filter: ModelSubscriptionTextInputsFilterInput
+  ) {
+    onCreateTextInputs(filter: $filter) {
+      id
+      text
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateTextInputs = /* GraphQL */ `
+  subscription OnUpdateTextInputs(
+    $filter: ModelSubscriptionTextInputsFilterInput
+  ) {
+    onUpdateTextInputs(filter: $filter) {
+      id
+      text
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteTextInputs = /* GraphQL */ `
+  subscription OnDeleteTextInputs(
+    $filter: ModelSubscriptionTextInputsFilterInput
+  ) {
+    onDeleteTextInputs(filter: $filter) {
+      id
+      text
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const onCreateDataObject = /* GraphQL */ `
   subscription OnCreateDataObject(
     $filter: ModelSubscriptionDataObjectFilterInput

@@ -1,6 +1,48 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const createTextInputs = /* GraphQL */ `
+  mutation CreateTextInputs(
+    $input: CreateTextInputsInput!
+    $condition: ModelTextInputsConditionInput
+  ) {
+    createTextInputs(input: $input, condition: $condition) {
+      id
+      text
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateTextInputs = /* GraphQL */ `
+  mutation UpdateTextInputs(
+    $input: UpdateTextInputsInput!
+    $condition: ModelTextInputsConditionInput
+  ) {
+    updateTextInputs(input: $input, condition: $condition) {
+      id
+      text
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteTextInputs = /* GraphQL */ `
+  mutation DeleteTextInputs(
+    $input: DeleteTextInputsInput!
+    $condition: ModelTextInputsConditionInput
+  ) {
+    deleteTextInputs(input: $input, condition: $condition) {
+      id
+      text
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createDataObject = /* GraphQL */ `
   mutation CreateDataObject(
     $input: CreateDataObjectInput!
