@@ -22,6 +22,7 @@ const client = generateClient();
 export default function App() {
   const [userprofiles, setUserProfiles] = useState([]);
   const { signOut } = useAuthenticator((context) => [context.user]);
+  const [aiResponse, setAIResponse] = useState("");
 
   useEffect(() => {
     fetchUserProfile();
@@ -31,7 +32,9 @@ export default function App() {
     try {
       const { data: profiles } = await client.models.UserProfile.list();
       setUserProfiles(profiles);
+      setAIResponse(mockResponse.data.choices[0].text);
     } catch (error) {
+      setAIResponse("Error generating response");
       console.error("Error fetching user profiles:", error);
     }
   }
@@ -95,7 +98,7 @@ export default function App() {
         ))}
       </Grid>
       <Button onClick={signOut}>Sign Out</Button>
-      <OpenAIResponseComponent />
+      <OpenAIResponseComponent response={aiResponse} />
       
       <TextInputs
         onSubmit={(fields) => {
