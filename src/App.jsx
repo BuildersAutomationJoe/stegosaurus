@@ -38,11 +38,17 @@ export default function App() {
 
   async function submitNewTextInputs(inputText) {
     try {
-      const response = await client.functions.invoke({
-        name: "openaiApiRequest", // Replace with your Lambda function's name
-        payload: { inputText }, // Pass the input text to the Lambda function
-      });
-      console.log("Lambda Response:", response);
+      // Mock response for testing
+      const mockResponse = {
+        data: {
+          choices: [
+            {
+              text: `Mock response for input: ${inputText}`,
+            },
+          ],
+        },
+      };
+      console.log("Mock Lambda Response:", mockResponse);
     } catch (error) {
       console.error("Error calling Lambda function:", error);
     }
