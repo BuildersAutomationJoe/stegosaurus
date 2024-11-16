@@ -18,7 +18,7 @@
       "function": {
         "openaiApiRequest": {
           "deploymentBucketName": "amplify-stegosaurus-staging-269b6-deployment",
-          "s3Key": "amplify-builds/openaiApiRequest-34304e2f423744386449-build.zip",
+          "s3Key": "amplify-builds/openaiApiRequest-466b794b474b73625139-build.zip",
           "secretsPathAmplifyAppId": "do2ghtt7chgos"
         }
       },
