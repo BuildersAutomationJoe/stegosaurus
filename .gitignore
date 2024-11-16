@@ -52,3 +52,4 @@ amplifytools.xcconfig
 #amplify-do-not-edit-end
 .aider*
 .env
+claude.key
