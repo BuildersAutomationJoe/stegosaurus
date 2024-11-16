@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import OpenAIResponseComponent from './ui-components/OpenAIResponseComponent';
 import {
   Button,
   Heading,
@@ -86,6 +87,8 @@ export default function App() {
         ))}
       </Grid>
       <Button onClick={signOut}>Sign Out</Button>
+      <OpenAIResponseComponent />
+      
       <TextInputs
         onSubmit={(fields) => {
           const inputText = fields.text.trim();
