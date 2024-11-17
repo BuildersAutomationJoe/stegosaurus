@@ -98,7 +98,6 @@ export default function App() {
         ))}
       </Grid>
       <Button onClick={signOut}>Sign Out</Button>
-      <OpenAIResponseComponent response={aiResponse} />
       
       <TextInputs
         onSubmit={(fields) => {
@@ -106,6 +105,8 @@ export default function App() {
           submitNewTextInputs(inputText);
         }}
       />
+      
+      <OpenAIResponseComponent response={aiResponse} />
     </Flex>
   );
 }

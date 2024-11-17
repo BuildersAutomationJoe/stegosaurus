@@ -13,11 +13,31 @@ const OpenAIResponseComponent: React.FC<Props> = ({ response }) => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '5px', maxWidth: '400px', margin: '0 auto' }}>
-      <h2 style={{ textAlign: 'center' }}>OpenAI Response</h2>
-      <div style={{ backgroundColor: '#f9f9f9', padding: '10px', borderRadius: '5px' }}>
-        <strong>Response:</strong>
-        <p>{response}</p>
+    <div style={{ 
+      padding: '20px',
+      maxWidth: '400px',
+      margin: '0 auto'
+    }}>
+      <div style={{
+        border: '1px solid #c4c4c4',
+        borderRadius: '4px',
+        padding: '16px',
+        backgroundColor: 'white'
+      }}>
+        <label style={{
+          display: 'block',
+          marginBottom: '8px',
+          color: '#545454',
+          fontSize: '14px'
+        }}>AI Response</label>
+        <div style={{
+          minHeight: '20px',
+          color: '#000',
+          fontSize: '16px',
+          lineHeight: '1.5'
+        }}>
+          {response}
+        </div>
       </div>
     </div>
   );
