@@ -32,9 +32,7 @@ export default function App() {
     try {
       const { data: profiles } = await client.models.UserProfile.list();
       setUserProfiles(profiles);
-      setAIResponse(mockResponse.data.choices[0].text);
     } catch (error) {
-      setAIResponse("Error generating response");
       console.error("Error fetching user profiles:", error);
     }
   }
@@ -52,8 +50,10 @@ export default function App() {
         },
       };
       console.log("Mock Lambda Response:", mockResponse);
+      setAIResponse(mockResponse.data.choices[0].text);
     } catch (error) {
       console.error("Error calling Lambda function:", error);
+      setAIResponse("Error generating response");
     }
   }
 
