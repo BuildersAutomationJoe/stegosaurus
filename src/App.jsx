@@ -66,9 +66,9 @@ export default function App() {
       width="70%"
       margin="0 auto"
     >
-      <HeroLayout1 />
+      
 
-      <Heading level={1}>My Profile</Heading>
+      <Heading level={1}>Welcome to Stegosaurus, your accounting helper.</Heading>
 
       <Divider />
 
@@ -97,7 +97,7 @@ export default function App() {
           </Flex>
         ))}
       </Grid>
-      <Button onClick={signOut}>Sign Out</Button>
+      
       
       <TextInputs
         onSubmit={(fields) => {
@@ -107,6 +107,7 @@ export default function App() {
       />
       
       <OpenAIResponseComponent response={aiResponse} />
+	  <Button onClick={signOut}>Sign Out</Button>
     </Flex>
   );
 }
