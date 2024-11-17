@@ -3,12 +3,11 @@ import axios from 'axios';
 
 interface Props {
   response: string;
+  error?: string | null;
+  loading?: boolean;
 }
 
-const OpenAIResponseComponent: React.FC<Props> = ({ response }) => {
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
-
+const OpenAIResponseComponent: React.FC<Props> = ({ response, error, loading }) => {
   if (loading) return (
     <div style={{
       padding: '20px',
@@ -44,14 +43,25 @@ const OpenAIResponseComponent: React.FC<Props> = ({ response }) => {
           color: '#545454',
           fontSize: '14px'
         }}>AI Response</label>
-        <div style={{
-          minHeight: '20px',
-          color: '#000',
-          fontSize: '16px',
-          lineHeight: '1.5'
-        }}>
-          {response}
-        </div>
+        {error ? (
+          <div style={{
+            minHeight: '20px',
+            color: '#ff0000',
+            fontSize: '16px',
+            lineHeight: '1.5'
+          }}>
+            {error}
+          </div>
+        ) : (
+          <div style={{
+            minHeight: '20px',
+            color: '#000',
+            fontSize: '16px',
+            lineHeight: '1.5'
+          }}>
+            {response}
+          </div>
+        )}
       </div>
     </div>
   );

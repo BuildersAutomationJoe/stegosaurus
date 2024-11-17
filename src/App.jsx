@@ -14,7 +14,7 @@ import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import outputs from "../amplify_outputs.json";
 import { generateClient } from "aws-amplify/api";
-import { openAiApiRequest } from './graphql/mutations';
+import { openaiApiRequest } from './graphql/mutations';
 import { TextInputs, HeroLayout1 } from './ui-components';
 
 Amplify.configure(outputs);
@@ -25,6 +25,8 @@ export default function App() {
   const [userprofiles, setUserProfiles] = useState([]);
   const { signOut } = useAuthenticator((context) => [context.user]);
   const [aiResponse, setAIResponse] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchUserProfile();
@@ -41,15 +43,25 @@ export default function App() {
 
   async function submitNewTextInputs(inputText) {
     try {
-      const response = await client.graphql({
-        query: openaiApiRequest,
-        variables: {
-          input: inputText
-        }
-      });
-      
-      console.log("Lambda Response:", response);
-      setAIResponse(response.data.openaiApiRequest);
+      setIsLoading(true);
+      setError(null);
+      try {
+        const response = await client.graphql({
+          query: openaiApiRequest,
+          variables: {
+            input: inputText
+          }
+        });
+        
+        console.log("Lambda Response:", response);
+        setAIResponse(response.data.openaiApiRequest);
+      } catch (err) {
+        console.error("Error calling Lambda function:", err);
+        setError(err.message || "An error occurred while processing your request");
+        setAIResponse("");
+      } finally {
+        setIsLoading(false);
+      }
     } catch (error) {
       console.error("Error calling Lambda function:", error);
       setAIResponse(`Error: ${error.message || JSON.stringify(error)}`);
@@ -107,7 +119,11 @@ export default function App() {
         }}
       />
       
-      <OpenAIResponseComponent response={aiResponse} />
+      <OpenAIResponseComponent 
+        response={aiResponse} 
+        error={error}
+        loading={isLoading}
+      />
 	  <Button onClick={signOut}>Sign Out</Button>
       </Flex>
     </Flex>
