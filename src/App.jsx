@@ -14,6 +14,7 @@ import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import outputs from "../amplify_outputs.json";
 import { generateClient } from "aws-amplify/api";
+import { openAiApiRequest } from './graphql/mutations';
 import { TextInputs, HeroLayout1 } from './ui-components';
 
 Amplify.configure(outputs);
@@ -41,11 +42,7 @@ export default function App() {
   async function submitNewTextInputs(inputText) {
     try {
       const response = await client.graphql({
-        query: `
-          mutation InvokeOpenAiApiRequest($input: String!) {
-            openAiApiRequest(input: $input)
-          }
-        `,
+        query: openAiApiRequest,
         variables: {
           input: inputText
         }
