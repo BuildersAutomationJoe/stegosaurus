@@ -42,14 +42,14 @@ export default function App() {
   async function submitNewTextInputs(inputText) {
     try {
       const response = await client.graphql({
-        query: openAiApiRequest,
+        query: openaiApiRequest,
         variables: {
           input: inputText
         }
       });
       
       console.log("Lambda Response:", response);
-      setAIResponse(response.data.openAiApiRequest);
+      setAIResponse(response.data.openaiApiRequest);
     } catch (error) {
       console.error("Error calling Lambda function:", error);
       setAIResponse(`Error: ${error.message || JSON.stringify(error)}`);
