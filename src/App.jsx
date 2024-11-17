@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import OpenAIResponseComponent from './ui-components/OpenAIResponseComponent';
+import { NavBarSide } from './ui-components';
 import {
   Button,
   Heading,
@@ -58,14 +59,16 @@ export default function App() {
   }
 
   return (
-    <Flex
-      className="App"
-      justifyContent="center"
-      alignItems="center"
-      direction="column"
-      width="70%"
-      margin="0 auto"
-    >
+    <Flex direction="row" width="100%">
+      <NavBarSide width="385px" />
+      <Flex
+        className="App"
+        justifyContent="center"
+        alignItems="center"
+        direction="column"
+        padding="2rem"
+        flex="1"
+      >
       
 
       <Heading level={1}>Welcome to Stegosaurus, your accounting helper.</Heading>
@@ -108,6 +111,7 @@ export default function App() {
       
       <OpenAIResponseComponent response={aiResponse} />
 	  <Button onClick={signOut}>Sign Out</Button>
+      </Flex>
     </Flex>
   );
 }
