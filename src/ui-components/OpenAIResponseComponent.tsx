@@ -9,8 +9,22 @@ const OpenAIResponseComponent: React.FC<Props> = ({ response }) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (loading) return (
+    <div style={{
+      padding: '20px',
+      maxWidth: '400px',
+      margin: '0 auto'
+    }}>
+      <div style={{
+        border: '1px solid #c4c4c4',
+        borderRadius: '4px',
+        padding: '16px',
+        backgroundColor: 'white'
+      }}>
+        <div>Loading...</div>
+      </div>
+    </div>
+  );
 
   return (
     <div style={{ 
