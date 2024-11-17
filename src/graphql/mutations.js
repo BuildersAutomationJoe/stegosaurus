@@ -1,6 +1,11 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
+export const openaiApiRequest = /* GraphQL */ `
+  mutation OpenaiApiRequest($input: String!) {
+    openaiApiRequest(input: $input)
+  }
+`;
 export const createTextInputs = /* GraphQL */ `
   mutation CreateTextInputs(
     $input: CreateTextInputsInput!
