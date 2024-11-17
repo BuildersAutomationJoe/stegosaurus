@@ -9,5 +9,5 @@ type DataObject @model @auth(rules: [{allow: public}]) {
 }
 
 type Mutation {
-  openaiApiRequest(input: String!): String @function(name: "openaiApiRequest-${env}")
+  openAIApiRequest(input: String!): String @function(name: "openaiApiRequest-${env}")
 }
