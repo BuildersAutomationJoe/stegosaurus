@@ -40,18 +40,19 @@ export default function App() {
 
   async function submitNewTextInputs(inputText) {
     try {
-      // Mock response for testing
-      const mockResponse = {
-        data: {
-          choices: [
-            {
-              text: `Mock response for input: ${inputText}`,
-            },
-          ],
-        },
-      };
-      console.log("Mock Lambda Response:", mockResponse);
-      setAIResponse(mockResponse.data.choices[0].text);
+      const response = await client.graphql({
+        query: `
+          mutation InvokeOpenAiApiRequest($input: String!) {
+            openAiApiRequest(input: $input)
+          }
+        `,
+        variables: {
+          input: inputText
+        }
+      });
+      
+      console.log("Lambda Response:", response);
+      setAIResponse(response.data.openAiApiRequest);
     } catch (error) {
       console.error("Error calling Lambda function:", error);
       setAIResponse("Error generating response");
