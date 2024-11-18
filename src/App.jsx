@@ -50,8 +50,8 @@ export default function App() {
       setIsLoading(true);
       setError(null);
       const restOperation = post({
-        apiName: 'openaiLambdaFunction',
-        path: '/openaiApiRequest',
+        apiName: 'openaiProcessor',
+        path: '/openai',
         options: {
           body: {
             input: inputText
