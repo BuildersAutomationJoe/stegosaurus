@@ -50,7 +50,7 @@ export default function App() {
       setIsLoading(true);
       setError(null);
       const restOperation = post({
-        apiName: 'openaiLambdaFunction',
+        apiName: 'openAIApiRequest',
         path: '/items',
         options: {
           body: {
