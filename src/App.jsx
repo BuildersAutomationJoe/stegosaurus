@@ -57,8 +57,8 @@ export default function App() {
         setAIResponse(response.data.openaiApiRequest);
       } catch (err) {
         console.error("Error calling Lambda function:", err);
-        setError(err.message || "An error occurred while processing your request");
-        setAIResponse("");
+        setError(err.message);
+        setAIResponse();
       } finally {
         setIsLoading(false);
       }
