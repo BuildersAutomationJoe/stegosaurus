@@ -1,8 +1,8 @@
 {
   "version": 1,
   "paths": {
-    "/openai": {
-      "name": "/openai",
+    "/openaiApiRequest": {
+      "name": "/openaiApiRequest",
       "lambdaFunction": "openaiLambdaFunction",
       "permissions": {
         "setting": "private",
