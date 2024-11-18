@@ -1,0 +1,29 @@
+{
+  "version": "2.0",
+  "routeKey": "POST /openai",
+  "rawPath": "/openai",
+  "rawQueryString": "",
+  "headers": {
+    "content-type": "application/json"
+  },
+  "requestContext": {
+    "accountId": "123456789012",
+    "apiId": "api-id",
+    "domainName": "id.execute-api.us-east-1.amazonaws.com",
+    "domainPrefix": "id",
+    "http": {
+      "method": "POST",
+      "path": "/openai",
+      "protocol": "HTTP/1.1",
+      "sourceIp": "IP",
+      "userAgent": "agent"
+    },
+    "requestId": "id",
+    "routeKey": "POST /openai",
+    "stage": "$default",
+    "time": "12/Mar/2024:19:03:58 +0000",
+    "timeEpoch": 1583348638390
+  },
+  "body": "{\"input\":\"What is double-entry bookkeeping?\"}",
+  "isBase64Encoded": false
+}
