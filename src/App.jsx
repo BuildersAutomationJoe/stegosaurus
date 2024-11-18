@@ -35,7 +35,11 @@ export default function App() {
   async function fetchUserProfile() {
     try {
       const profiles = await DataStore.query(UserProfile);
-      setUserProfiles(profiles);
+      if (profiles && profiles.length > 0) {
+        setUserProfiles(profiles);
+      } else {
+        console.log("No user profiles found");
+      }
     } catch (error) {
       console.error("Error fetching user profiles:", error);
     }
