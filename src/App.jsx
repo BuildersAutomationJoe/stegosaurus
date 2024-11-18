@@ -18,19 +18,8 @@ import outputs from "../amplify_outputs.json";
 import { post } from 'aws-amplify/api';
 import { TextInputs, HeroLayout1 } from './ui-components';
 
-const apiConfig = {
-  API: {
-    endpoints: [
-      {
-        name: "api",
-        endpoint: outputs.api.ApiGatewayInvokeURL,
-        region: outputs.api.Region
-      }
-    ]
-  }
-};
 
-Amplify.configure({ ...outputs, ...apiConfig });
+Amplify.configure({ outputs });
 
 
 export default function App() {
@@ -62,8 +51,8 @@ export default function App() {
       setIsLoading(true);
       setError(null);
       const restOperation = post({
-        apiName: 'api',
-        path: '/openai',
+        apiName: 'fuckFace',
+        path: '/fuck',
         options: {
           body: {
             input: inputText

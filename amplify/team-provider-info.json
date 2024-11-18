@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-stegosaurus-staging-269b6-unauthRole",
       "StackName": "amplify-stegosaurus-staging-269b6",
       "StackId": "arn:aws:cloudformation:us-east-2:851725347775:stack/amplify-stegosaurus-staging-269b6/6a142f30-a2b6-11ef-9715-067c9149f2df",
-      "AmplifyAppId": "do2ghtt7chgos"
+      "AmplifyAppId": "do2ghtt7chgos",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-stegosaurus-staging-269b6-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
@@ -20,10 +21,16 @@
           "deploymentBucketName": "amplify-stegosaurus-staging-269b6-deployment",
           "s3Key": "amplify-builds/openaiApiRequest-466b794b474b73625139-build.zip",
           "secretsPathAmplifyAppId": "do2ghtt7chgos"
+        },
+        "openaiProcessor": {
+          "deploymentBucketName": "amplify-stegosaurus-staging-269b6-deployment",
+          "s3Key": "amplify-builds/openaiProcessor-35645465366275527973-build.zip",
+          "secretsPathAmplifyAppId": "do2ghtt7chgos"
         }
       },
       "api": {
-        "stegosaurus": {}
+        "stegosaurus": {},
+        "fuckFace": {}
       }
     }
   }

@@ -1,9 +1,51 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const openaiApiRequest = /* GraphQL */ `
+export const openAIApiRequest = /* GraphQL */ `
   mutation OpenAIApiRequest($input: String!) {
     openAIApiRequest(input: $input)
+  }
+`;
+export const createUserProfile = /* GraphQL */ `
+  mutation CreateUserProfile(
+    $input: CreateUserProfileInput!
+    $condition: ModelUserProfileConditionInput
+  ) {
+    createUserProfile(input: $input, condition: $condition) {
+      id
+      email
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateUserProfile = /* GraphQL */ `
+  mutation UpdateUserProfile(
+    $input: UpdateUserProfileInput!
+    $condition: ModelUserProfileConditionInput
+  ) {
+    updateUserProfile(input: $input, condition: $condition) {
+      id
+      email
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteUserProfile = /* GraphQL */ `
+  mutation DeleteUserProfile(
+    $input: DeleteUserProfileInput!
+    $condition: ModelUserProfileConditionInput
+  ) {
+    deleteUserProfile(input: $input, condition: $condition) {
+      id
+      email
+      createdAt
+      updatedAt
+      __typename
+    }
   }
 `;
 export const createTextInputs = /* GraphQL */ `

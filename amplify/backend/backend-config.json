@@ -1,5 +1,19 @@
 {
   "api": {
+    "fuckFace": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "openaiProcessor"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    },
     "stegosaurus": {
       "dependsOn": [],
       "output": {
@@ -79,6 +93,11 @@
       ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "openaiProcessor": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -103,6 +122,30 @@
         {
           "category": "function",
           "resourceName": "openaiApiRequest"
+        }
+      ]
+    },
+    "AMPLIFY_function_openaiProcessor_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "openaiProcessor"
+        }
+      ]
+    },
+    "AMPLIFY_function_openaiProcessor_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "openaiProcessor"
+        }
+      ]
+    },
+    "AMPLIFY_function_openaiProcessor_secretsPathAmplifyAppId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "openaiProcessor"
         }
       ]
     }
