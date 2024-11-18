@@ -14,12 +14,12 @@ import {
 import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
-import outputs from "../amplify_outputs.json";
+import awsconfig from './aws-exports';
 import { post } from 'aws-amplify/api';
 import { TextInputs, HeroLayout1 } from './ui-components';
 
 
-Amplify.configure({ outputs });
+Amplify.configure(awsconfig);
 
 
 export default function App() {
