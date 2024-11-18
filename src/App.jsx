@@ -50,8 +50,8 @@ export default function App() {
       setIsLoading(true);
       setError(null);
       const restOperation = post({
-        apiName: 'openAIApiRequest',
-        path: '/items',
+        apiName: 'openaiLambdaFunction',
+        path: '/openai',
         options: {
           body: {
             input: inputText
@@ -61,12 +61,15 @@ export default function App() {
 
       const response = await restOperation.response;
       const data = await response.body.json();
-        
+      
+      setIsLoading(false);
       console.log("Lambda Response:", data);
-      setAIResponse(data.body);
+      setAIResponse(data.body || data);
     } catch (error) {
-      console.error("Fuck:", error);
-      setAIResponse(`Error: ${error.message || JSON.stringify(error)}`);
+      setIsLoading(false);
+      console.error("API Error:", error);
+      setError(error);
+      setAIResponse("Sorry, there was an error processing your request. Please try again.");
     }
   }
 
