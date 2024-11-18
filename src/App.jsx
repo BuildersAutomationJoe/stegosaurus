@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { DataStore } from '@aws-amplify/datastore';
 import OpenAIResponseComponent from './ui-components/OpenAIResponseComponent';
 import { NavBarSide } from './ui-components';
 import {
@@ -32,7 +33,7 @@ export default function App() {
 
   async function fetchUserProfile() {
     try {
-      const { data: profiles } = await client.models.UserProfile.list();
+      const profiles = await DataStore.query(UserProfile);
       setUserProfiles(profiles);
     } catch (error) {
       console.error("Error fetching user profiles:", error);
