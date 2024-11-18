@@ -45,7 +45,7 @@ export default function App() {
       setError(null);
       const restOperation = post({
         apiName: 'openaiLambdaFunction',
-        path: '/openai',
+        path: '/items',
         options: {
           body: {
             input: inputText
