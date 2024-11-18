@@ -13,13 +13,11 @@ import { useAuthenticator } from "@aws-amplify/ui-react";
 import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import outputs from "../amplify_outputs.json";
-import { generateClient } from "aws-amplify/api";
-import { openaiApiRequest } from './graphql/mutations';
+import { post } from 'aws-amplify/api';
 import { TextInputs, HeroLayout1 } from './ui-components';
 
 Amplify.configure(outputs);
 
-const client = generateClient();
 
 export default function App() {
   const [userprofiles, setUserProfiles] = useState([]);
@@ -45,23 +43,21 @@ export default function App() {
     try {
       setIsLoading(true);
       setError(null);
-      try {
-        const response = await client.graphql({
-          query: openaiApiRequest,
-          variables: {
+      const restOperation = post({
+        apiName: 'openaiLambdaFunction',
+        path: '/openai',
+        options: {
+          body: {
             input: inputText
           }
-        });
+        }
+      });
+
+      const response = await restOperation.response;
+      const data = await response.body.json();
         
-        console.log("Lambda Response:", response);
-        setAIResponse(response.data.openaiApiRequest);
-      } catch (err) {
-        console.error("Error calling Lambda function:", err);
-        setError(err.message);
-        setAIResponse();
-      } finally {
-        setIsLoading(false);
-      }
+      console.log("Lambda Response:", data);
+      setAIResponse(data.body);
     } catch (error) {
       console.error("Error calling Lambda function:", error);
       setAIResponse(`Error: ${error.message || JSON.stringify(error)}`);
