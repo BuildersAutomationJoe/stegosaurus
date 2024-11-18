@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { DataStore } from '@aws-amplify/datastore';
-import { UserProfile } from './models';
+import { UserProfile } from './models/schema';
 import OpenAIResponseComponent from './ui-components/OpenAIResponseComponent';
 import { NavBarSide } from './ui-components';
 import {
