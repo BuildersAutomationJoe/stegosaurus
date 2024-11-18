@@ -65,7 +65,7 @@ export default function App() {
       console.log("Lambda Response:", data);
       setAIResponse(data.body);
     } catch (error) {
-      console.error("Error calling Lambda function:", error);
+      console.error("Fuck:", error);
       setAIResponse(`Error: ${error.message || JSON.stringify(error)}`);
     }
   }
