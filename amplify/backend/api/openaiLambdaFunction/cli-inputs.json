@@ -5,7 +5,8 @@
       "name": "/items",
       "lambdaFunction": "openaiApiRequest",
       "permissions": {
-        "setting": "open"
+        "setting": "private",
+        "auth": ["create", "read", "update", "delete"]
       }
     }
   }
