@@ -18,7 +18,19 @@ import outputs from "../amplify_outputs.json";
 import { post } from 'aws-amplify/api';
 import { TextInputs, HeroLayout1 } from './ui-components';
 
-Amplify.configure(outputs);
+const apiConfig = {
+  API: {
+    endpoints: [
+      {
+        name: "api",
+        endpoint: outputs.api.ApiGatewayInvokeURL,
+        region: outputs.api.Region
+      }
+    ]
+  }
+};
+
+Amplify.configure({ ...outputs, ...apiConfig });
 
 
 export default function App() {
@@ -50,7 +62,7 @@ export default function App() {
       setIsLoading(true);
       setError(null);
       const restOperation = post({
-        apiName: 'openaiProcessor',
+        apiName: 'api',
         path: '/openai',
         options: {
           body: {
