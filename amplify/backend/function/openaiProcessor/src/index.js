@@ -1,4 +1,4 @@
-const aws = require('aws-sdk');
+const { SecretsManagerClient, GetSecretValueCommand } = require("@aws-sdk/client-secrets-manager");
 const OpenAI = require('openai');
 
 /**
@@ -23,14 +23,15 @@ exports.handler = async (event) => {
       };
     }
 
-    // Get OpenAI API key from SSM Parameter Store
-    const ssm = new aws.SSM();
-    const { Parameters } = await ssm.getParameters({
-      Names: ["OPENAI_API_KEY"].map(secretName => process.env[secretName]),
-      WithDecryption: true,
-    }).promise();
-
-    const openaiApiKey = Parameters[0].Value;
+    // Get OpenAI API key from Secrets Manager
+    const client = new SecretsManagerClient();
+    const command = new GetSecretValueCommand({
+      SecretId: process.env.OPENAI_API_KEY_SECRET_NAME,
+    });
+    
+    const response = await client.send(command);
+    const secret = JSON.parse(response.SecretString);
+    const openaiApiKey = secret.OPENAI_API_KEY;
     const openai = new OpenAI({ apiKey: openaiApiKey });
 
     // Call OpenAI API
