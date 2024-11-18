@@ -3,7 +3,7 @@
   "paths": {
     "/items": {
       "name": "/items",
-      "lambdaFunction": "openaiApiRequest",
+      "lambdaFunction": "openaiLambdaFunction",
       "permissions": {
         "setting": "private",
         "auth": ["create", "read", "update", "delete"]
